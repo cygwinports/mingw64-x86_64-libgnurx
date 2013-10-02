@@ -1,0 +1,27 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-libgnurx"
+VERSION=2.5
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="C regex functions for Win64 toolchain"
+DESCRIPTION="This is the regex functionality from glibc 2.5 extracted into a
+separate library, for Win64."
+HOMEPAGE=
+SRC_URI="ftp://ftp.gnome.org/pub/GNOME/binaries/win32/dependencies/libgnurx-src-${VERSION}.zip"
+SRC_DIR="libgnurx-${VERSION}"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake CC="${CC} -mthreads" CFLAGS="${CFLAGS} -I." libgnurx-0.dll
+	${AR} rcs libgnurx.a regex.o
+}
+
+src_install() {
+	cd ${B}
+	dobin libgnurx-0.dll
+	dolib libgnurx.a libgnurx.dll.a
+	doinclude regex.h
+}
