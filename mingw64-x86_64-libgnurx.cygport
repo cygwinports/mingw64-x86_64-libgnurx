@@ -3,7 +3,7 @@ inherit cross
 
 NAME="mingw64-x86_64-libgnurx"
 VERSION=2.5
-RELEASE=1
+RELEASE=2
 CATEGORY="Devel"
 SUMMARY="C regex functions for Win64 toolchain"
 DESCRIPTION="This is the regex functionality from glibc 2.5 extracted into a
@@ -11,6 +11,7 @@ separate library, for Win64."
 HOMEPAGE=
 SRC_URI="ftp://ftp.gnome.org/pub/GNOME/binaries/win32/dependencies/libgnurx-src-${VERSION}.zip"
 SRC_DIR="libgnurx-${VERSION}"
+PATCH_URI="2.5-mingw-llp64.patch"
 
 src_compile() {
 	lndirs
