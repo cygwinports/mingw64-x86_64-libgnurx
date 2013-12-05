@@ -3,7 +3,7 @@ inherit cross
 
 NAME="mingw64-x86_64-libgnurx"
 VERSION=2.5
-RELEASE=2
+RELEASE=3
 CATEGORY="Devel"
 SUMMARY="C regex functions for Win64 toolchain"
 DESCRIPTION="This is the regex functionality from glibc 2.5 extracted into a
@@ -24,5 +24,7 @@ src_install() {
 	cd ${B}
 	dobin libgnurx-0.dll
 	dolib libgnurx.a libgnurx.dll.a
+	dosym libgnurx.a ${CROSS_LIBDIR}/libregex.a
+	dosym libgnurx.dll.a ${CROSS_LIBDIR}/libregex.dll.a
 	doinclude regex.h
 }
